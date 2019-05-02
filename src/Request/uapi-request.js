@@ -1,3 +1,5 @@
+const fs = require("fs");
+const moment = require('moment');
 const handlebars = require('handlebars');
 const axios = require('axios');
 const { pd } = require('pretty-data');
@@ -76,7 +78,15 @@ module.exports = function uapiRequest(
         }));
 
     const sendRequest = function (xml) {
+
+      
       if (debugMode) {
+        let reqFileName = String(rootObject);
+      reqFileName = reqFileName.replace(":", "").replace("Rsp", "Req");
+      if (reqFileName !== "airLowFareSearchReq") {
+        reqFileName = reqFileName + "_" + moment().format("YYYYMMDD_HHmmss") + ".txt";
+        fs.writeFile("log/bookinglog/" + reqFileName, pd.xml(xml), function(err) {});
+      } 
         log('Request URL: ', service);
         log('Request XML: ', pd.xml(xml));
       }
@@ -95,6 +105,12 @@ module.exports = function uapiRequest(
         data: xml,
       })
         .then((response) => {
+          let rspFileName = String(rootObject);
+          rspFileName = rspFileName.replace(":", "");
+          if (rspFileName !== "airLowFareSearchRsp") {
+            rspFileName = rspFileName + "_" + moment().format("YYYYMMDD_HHmmss") + ".txt";
+            fs.writeFile("log/bookinglog/" + rspFileName, pd.xml(response.data), function(err) {});
+          }
           if (debugMode) {
             log('Response SOAP: ', pd.xml(response.data));
           }

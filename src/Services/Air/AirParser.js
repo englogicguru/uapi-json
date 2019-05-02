@@ -249,7 +249,7 @@ function airPriceRspPricingSolutionXML(obj) {
   pricingSolution['air:AirPricingInfo'] = pricingInfos;
   const resultXml = {};
 
-  ['air:AirSegment', 'air:AirPricingInfo', 'air:FareNote'].forEach((root) => {
+  ['air:AirSegment', 'air:AirPricingInfo', 'air:FareNote', `common_v47_0:HostToken`].forEach((root) => {
     const builder = new xml2js.Builder({
       headless: true,
       rootName: root,
