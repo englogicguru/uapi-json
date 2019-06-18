@@ -58,6 +58,8 @@ module.exports = `
                         {{/each}}
                     </air:PreferredCabins>
                     {{/if}}
+
+                    <air:FlightType NonStopDirects="{{../nonStopDirects}}"></air:FlightType>
                 </air:AirLegModifiers>
             </air:SearchAirLeg>
             {{/legs}}
