@@ -46,8 +46,6 @@ module.exports = `
                     <com:CabinClass Type="Business" xmlns:com="http://www.travelport.com/schema/common_v47_0" />
                 </air:PermittedCabins>
             </air:AirPricingModifiers>
-            {{else}}
-            <air:AirPricingModifiers InventoryRequestType="DirectAccess"/>
             {{/if}}
             {{#passengers}}
             <com:SearchPassenger Key="P_{{@index}}" Code="{{ageCategory}}" {{#if child}}Age="9"{{else if Age}}Age="{{Age}}"{{/if}} xmlns:com="http://www.travelport.com/schema/common_v47_0"/>
@@ -55,11 +53,7 @@ module.exports = `
             {{#if hasFareBasis}}
             <air:AirPricingCommand>
                 {{#segments}}
-                <air:AirSegmentPricingModifiers AirSegmentRef="{{@index}}" FareBasisCode="{{fareBasisCode}}">
-                    <air:PermittedBookingCodes> 
-                        <air:BookingCode Code="{{bookingClass}}" /> 
-                    </air:PermittedBookingCodes>
-                </air:AirSegmentPricingModifiers>
+                <air:AirSegmentPricingModifiers AirSegmentRef="{{@index}}" FareBasisCode="{{fareBasisCode}}"/>
                 {{/segments}}
             </air:AirPricingCommand>
             {{/if}}
