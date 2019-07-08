@@ -282,6 +282,14 @@ module.exports = (settings) => {
         );
     },
 
+    cancelUR(options) {
+      return service.cancelUR({
+        LocatorCode: options.LocatorCode,
+      }).catch((err) => {
+        return Promise.reject(err);
+      });
+    },
+
     cancelPNR(options) {
       const ignoreTickets = typeof options.ignoreTickets === 'undefined'
         ? false // default value
