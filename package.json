@@ -40,6 +40,7 @@
     "handlebars-helper-equal": "^1.0.0",
     "joi": "^13.7.0",
     "moment": "^2.10.6",
+    "moment-timezone": "^0.5.26",
     "node-errors-helpers": "^0.1.2",
     "pretty-data": "^0.40.0",
     "promise-retry": "^1.1.1",

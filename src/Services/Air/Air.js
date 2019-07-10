@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment-timezone');
 const retry = require('promise-retry');
 
 const { parsers } = require('../../utils');
@@ -37,7 +37,7 @@ module.exports = (settings) => {
     book(options) {
       return service.airPricePricingSolutionXML(options).then((data) => {
         const tauDate = moment(options.tau || null);
-        const tau = tauDate.isValid() ? tauDate.format() : moment().add(3, 'hours').format();
+        const tau = tauDate.isValid() ? tauDate.format() : moment().tz("Asia/Dhaka").add(3, 'hours').format();
         const bookingParams = Object.assign({}, {
           ticketDate: tau,
           ActionStatusType: 'TAU',
